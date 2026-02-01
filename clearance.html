@@ -138,7 +138,7 @@
     </nav>
 
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="fixed top-16 left-0 h-[calc(100vh-64px)] overflow-y-auto z-20 transition-all duration-300 ease-in-out bg-white shadow-lg md:flex flex-col w-64">
+    <aside id="sidebar" class="fixed top-16 hidden left-0 h-[calc(100vh-64px)] overflow-y-auto z-20 transition-all duration-300 ease-in-out bg-white shadow-lg md:flex flex-col w-64">
         <div class="p-6">
      <nav>
                 <ul>
@@ -512,13 +512,13 @@ Management
         </div>
 
         <!-- Clearance Content Section -->
-        <div id="clearance-content" class="page-content">
+        <div id="clearance-content" class="page-content ">
             <header class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
                 <h2 class="text-3xl font-semibold text-gray-800 mb-2 md:mb-0">Clearance Status</h2>
             </header>
 
             <!-- Pending Clearance View (Default, editable form) -->
-            <div id="pending-clearance-view" class="clearance-view hidden">
+            <div id="pending-clearance-view" class="clearance-view">
                 <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 mb-6 max-w-4xl mx-auto">
                     <p class="text-gray-700 mb-6" id="clearance-status-message">
                         Please update your clearance information in the tabs below.
@@ -526,7 +526,7 @@ Management
 
                     <!-- Tab Navigation -->
                     <div class="flex border-b border-gray-200 mb-6" id="clearance-tab-navigation">
-                        <button class="tab-button py-2 px-4 text-gray-600 hover:text-purple-700 focus:outline-none opacity-60 cursor-not-allowed" data-tab="profile" data-tab-index="0" disabled="">
+                        <button class="tab-button py-2 px-4 active text-gray-600 hover:text-purple-700 focus:outline-none opacity-60 cursor-not-allowed" data-tab="profile" data-tab-index="0" disabled="">
                             Profile
                         </button>
                         <button class="tab-button py-2 px-4 text-gray-600 hover:text-purple-700 focus:outline-none opacity-60 cursor-not-allowed" data-tab="academic" data-tab-index="1" disabled="">
@@ -543,7 +543,7 @@ Management
                     <!-- Tab Content -->
                     <form id="clearance-update-form" class="space-y-8" novalidate="">
                         <!-- Profile Tab Content -->
-                        <div id="profile-tab" class="tab-content">
+                        <div id="profile-tab" class="tab-content" style="display: block;">
                             <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user mr-2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                 Student Profile
@@ -555,21 +555,21 @@ Management
                                     <label for="passport-upload" class="block text-sm font-medium text-gray-700 mb-1">Passport Photograph (JPG, &lt; 50KB, red background)</label>
                                     <input type="file" id="passport-upload" name="passport-upload" accept="image/jpeg" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm opacity-60 cursor-not-allowed" disabled="">
                                     <div class="mt-2 flex justify-center items-center p-2 border border-gray-300 rounded-md bg-gray-50 w-32 h-32 overflow-hidden">
-                                        <img id="passport-preview" src="/app/files/passport/B1152783.jpg" alt="Passport Preview" class="w-full h-full object-contain rounded-md">
+                                        <img id="passport-preview" src="ray.jpg" alt="Passport Preview" class="w-full h-full object-contain rounded-md">
                                     </div>
                                     <p id="passport-error" class="text-red-500 text-xs mt-1 hidden">Error message</p>
                                 </div>
                                 <div>
                                     <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                                    <input type="text" id="first-name" name="first-name" value="John" required="" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm bg-gray-100 cursor-not-allowed focus:ring-0 focus:border-gray-300 opacity-60" readonly="" disabled="">
+                                    <input type="text" id="first-name" name="first-name" value="Itebiye" required="" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm bg-gray-100 cursor-not-allowed focus:ring-0 focus:border-gray-300 opacity-60" readonly="" disabled="">
                                 </div>
                                 <div>
                                     <label for="middle-name" class="block text-sm font-medium text-gray-700 mb-1">Middle Name (Optional)</label>
-                                    <input type="text" id="middle-name" name="middle-name" value="" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm bg-gray-100 cursor-not-allowed focus:ring-0 focus:border-gray-300 opacity-60" readonly="" disabled="">
+                                    <input type="text" id="middle-name" name="middle-name" value="Caroline" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm bg-gray-100 cursor-not-allowed focus:ring-0 focus:border-gray-300 opacity-60" readonly="" disabled="">
                                 </div>
                                 <div>
                                     <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                                    <input type="text" id="last-name" name="last-name" value="Doe" required="" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm bg-gray-100 cursor-not-allowed focus:ring-0 focus:border-gray-300 opacity-60" readonly="" disabled="">
+                                    <input type="text" id="last-name" name="last-name" value="Ray" required="" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm bg-gray-100 cursor-not-allowed focus:ring-0 focus:border-gray-300 opacity-60" readonly="" disabled="">
                                 </div>
                                 <div>
                                     <label for="date-of-birth" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
@@ -1015,7 +1015,7 @@ Management
             </div>
 
             <!-- Approved Clearance View -->
-            <div id="approved-clearance-view" class="clearance-view bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <div id="approved-clearance-view" class="clearance-view bg-white p-6 rounded-lg hidden shadow-md border border-gray-200">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-green-600 mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg>
                     Clearance Approved!
