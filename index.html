@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Benin</title>
+    <link rel="icon" href="uniben.png" type="image/png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #eeeeee;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-bg-color { background-color: #55074B; }
+        .main-text-color { color: #55074B; }
+        .secondary-bg-color { background-color: #eeeeee; }
+        .secondary-text-color { color: #eeeeee; }
+
+        main {
+            flex-grow: 1;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .captcha-text {
+            background: #fdfdfd;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-decoration: line-through;
+            user-select: none;
+            color: #55074B;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            overflow-y: auto;
+            padding: 1rem 0;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 500px;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body id="uapp"><a href="cdn-cgi/content%3Fid=3g5uvg8EPWJpwiJlFQLYvDWh2W7AAXfRkJCoJk3ne4s-1769799941.2242706-1.0.1.1-3aPlXGK9b7C0AccdLowZn2X4jOgtWXZjVpkUCmakqp0.html" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
+
+    <header class="main-bg-color shadow-lg">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div>
+                <a href="index.html#home" class="nav-link flex items-center space-x-3">
+                    <img src="uniben.png" alt="University Logo" class="h-10 w-10 rounded-full border-2 border-white/50" onerror="this.onerror=null;this.src='uniben.png';">
+                    <span class="secondary-text-color text-2xl font-bold">University of Benin</span>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html#home" class="nav-link secondary-text-color hover:text-gray-300">Home</a>
+                <a href="index.html#enquiries" class="nav-link secondary-text-color hover:text-gray-300">Enquiries</a>
+                <a href="index.html#application" class="nav-link secondary-text-color hover:text-gray-300">Application</a>
+                <a href="index.html#login" class="nav-link bg-white/20 hover:bg-white/30 px-4 py-2 rounded-md secondary-text-color font-semibold">Login</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="secondary-text-color focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2">
+            <a href="index.html#home" class="nav-link block secondary-text-color hover:text-gray-300">Home</a>
+            <a href="index.html#enquiries" class="nav-link block secondary-text-color hover:text-gray-300">Enquiries</a>
+            <a href="index.html#application" class="nav-link block secondary-text-color hover:text-gray-300">Application</a>
+            <a href="index.html#login" class="nav-link block mt-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-md secondary-text-color font-semibold text-center">Login</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="home" class="page-section active">
+            <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                <h1 class="text-4xl font-bold main-text-color mb-4">Welcome to UNIBEN Students Information System</h1>
+                <p class="text-lg text-gray-600 mb-6">Your central hub for managing academic information with ease and security.</p>
+                <p class="max-w-3xl mx-auto text-gray-700 mb-8">This portal provides a secure and user-friendly platform for prospective and current students to manage their academic applications, view records, and make enquiries. Our goal is to streamline academic processes and provide you with the information you need, right at your fingertips.</p>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl main-text-color mb-2">Online Applications</h3>
+                        <p>Easily browse and apply for our various academic programs online. Our simplified application process guides you every step of the way.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl main-text-color mb-2">Record Management</h3>
+                        <p>Registered students can log in to view academic records, track progress, and access important documents securely.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-bold text-xl main-text-color mb-2">24/7 Support</h3>
+                        <p>Have a question? Our support team is available to assist you. Visit our Enquiries page for more information.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="enquiries" class="page-section">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h1 class="text-3xl font-bold main-text-color mb-6">Contact Us for Enquiries</h1>
+                <p class="text-gray-600 mb-8">We are here to help. If you have any questions, please reach out to us.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <form id="enquiry-form">
+                        <div id="enquiry-success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                          <strong class="font-bold">Success!</strong>
+                          <span class="block sm:inline"> Your message has been sent. We will get back to you shortly.</span>
+                        </div>
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                        </div>
+                         <div class="mb-4">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required></textarea>
+                        </div>
+                        <button type="submit" id="enquiry-submit-btn" class="w-full main-bg-color secondary-text-color font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                            <span class="btn-text">Send Message</span>
+                            <svg class="animate-spin h-5 w-5 ml-3 hidden btn-loader" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-bold text-xl main-text-color">Email</h3>
+                            <p class="text-gray-700"><a href="https://unibenportal.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4d24232b220d3823242f282363282938">[email&#160;protected]</a></p>
+                        </div>
+                         <div>
+                            <h3 class="font-bold text-xl main-text-color">Phone</h3>
+                            <p class="text-gray-700">08143058717, 09031516333 (Mon-Fri, 9am-5pm)</p>
+                        </div>
+                         <div>
+                            <h3 class="font-bold text-xl main-text-color">Visit Us</h3>
+                            <p class="text-gray-700">Main campus, Ugbowo, Benin city, Edo state, Nigeria.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reset-password-page" class="page-section">
+            <div class="flex items-center justify-center">
+                <div class="w-full max-w-md">
+                    <form id="set-new-password-form" class="bg-white p-8 rounded-lg shadow-md">
+                        <h1 class="text-2xl font-bold main-text-color mb-6 text-center">Set a New Password</h1>
+                        <div class="mb-4">
+                            <label for="new-password" class="block text-gray-700 font-medium mb-2">New Password</label>
+                            <input type="password" id="new-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="confirm-password" class="block text-gray-700 font-medium mb-2">Confirm New Password</label>
+                            <input type="password" id="confirm-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                        </div>
+                        <button type="submit" class="w-full main-bg-color secondary-text-color font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300">
+                            Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="application" class="page-section">
+             <div id="application-content" class="bg-white p-8 rounded-lg shadow-md min-h-[400px]">
+                </div>
+        </section>
+
+        <section id="login" class="page-section">
+            <div class="flex items-center justify-center">
+                <div class="w-full max-w-md">
+                    <form id="student-login-form" class="bg-white p-8 rounded-lg shadow-md">
+                        <h1 class="text-2xl font-bold main-text-color mb-6 text-center">Login</h1>
+                        
+                        <div class="mb-4">
+                            <label for="student-id" class="block text-gray-700 font-medium mb-2">User ID</label>
+                            <input type="text" id="student-id" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required authcomplete="off">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="student-password" class="block text-gray-700 font-medium mb-2">Password</label>
+                            <input type="password" id="student-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required authcomplete="off">
+                        </div>
+
+                        <div class="mb-6">
+                             <label for="captcha-input" class="block text-gray-700 font-medium mb-2">CAPTCHA Challenge</label>
+                             <div class="flex items-center space-x-4">
+                                <span id="captcha-display" class="captcha-text"></span>
+                                <button type="button" id="refresh-captcha" class="main-text-color">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M20 4v5h-5M4 20v-5h5m11-1V4a2 2 0 00-2-2h-3.5M4 9V4a2 2 0 012-2h3.5M15 20v-5.5a2.5 2.5 0 00-5 0V20m-1.5-1.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" /></svg>
+                                </button>
+                             </div>
+                             <input type="text" id="captcha-input" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Enter characters above" required>
+                        </div>
+                        
+                        <button type="submit" id="student-login-btn" class="w-full main-bg-color secondary-text-color font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                            <span class="btn-text">Login</span>
+                            <svg class="animate-spin h-5 w-5 ml-3 hidden btn-loader" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+
+                        <div class="text-center mt-4">
+                            <a href="index.html#" id="forgot-password-link" class="text-sm main-text-color hover:underline">Forgot Password?</a>
+                        </div>
+
+                        <div class="text-center mt-3 border-t pt-3">
+                            <p class="text-sm text-gray-600 mb-2"><br>Newly Admitted?</p>
+                            
+                            <a href="index.html#" id="open-create-account-modal" class="font-medium main-text-color hover:underline block">Click here to create your account</a>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-6 hidden">
+                        <p class="text-gray-600">Not a student?</p>
+                        <button id="open-applicant-modal" class="w-full mt-2 bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition duration-300 shadow-lg text-lg">
+                            Applicant Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="applicant-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold main-text-color">Applicant Login</h2>
+                <button id="close-applicant-modal" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            </div>
+            <form id="applicant-login-form">
+                <div id="applicant-form-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert"></div>
+                <div class="mb-4">
+                    <label for="applicant-id" class="block text-gray-700 font-medium mb-2">Applicant ID</label>
+                    <input type="text" id="applicant-id" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                </div>
+                <div class="mb-4">
+                    <label for="applicant-password" class="block text-gray-700 font-medium mb-2">Password</label>
+                    <input type="password" id="applicant-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                </div>
+                <div class="mb-6">
+                    <label for="application-type" class="block text-gray-700 font-medium mb-2">Application Type</label>
+                    <select id="application-type" class="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                        </select>
+                </div>
+                <button type="submit" id="applicant-continue-btn" class="w-full main-bg-color secondary-text-color font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                    <span class="btn-text">Continue</span>
+                    <svg class="animate-spin h-5 w-5 ml-3 hidden btn-loader" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="begin-application-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold main-text-color">Begin Application</h2>
+                <button id="close-begin-application-modal" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            </div>
+            <form id="begin-application-form">
+                <div id="begin-app-form-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert"></div>
+
+                <div id="utme-fields" class="hidden space-y-4">
+                    <div class="mb-4">
+                        <label for="jamb-reg" class="block text-gray-700 font-medium mb-2">JAMB Registration Number</label>
+                        <input name="jambRegNo" type="text" id="jamb-reg" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="jamb-score" class="block text-gray-700 font-medium mb-2">JAMB Score</label>
+                        <input name="jambScore" type="number" id="jamb-score" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="jamb-pass" class="block text-gray-700 font-medium mb-2">Create a Password</label>
+                        <input type="password" name="jambPass" id="jamb-pass" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                </div>
+
+                <div id="de-fields" class="hidden space-y-4">
+                    <div class="mb-4">
+                        <label for="jamb-reg-de" class="block text-gray-700 font-medium mb-2">JAMB Registration Number</label>
+                        <input type="text" id="jamb-reg-de" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="de-pass" class="block text-gray-700 font-medium mb-2">Create a Password</label>
+                        <input type="password" id="de-pass" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                </div>
+
+                <div id="generic-app-fields" class="hidden space-y-4">
+                     <div class="mb-4">
+                        <label for="begin-app-email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="begin-app-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="begin-app-phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                        <input type="tel" id="begin-app-phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="generic-pass" class="block text-gray-700 font-medium mb-2">Create a Password</label>
+                        <input type="password" id="generic-pass" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                </div>
+                
+                <input type="hidden" id="batchid" name="batchid" value="" />
+                <div class="mb-6 mt-4">
+                    <label for="math-captcha-input" class="block text-gray-700 font-medium mb-2">Security Question</label>
+                    <div class="flex items-center space-x-4 p-2 bg-gray-100 rounded-lg">
+                       <span id="math-captcha-question" class="font-bold main-text-color"></span>
+                       <input type="number" id="math-captcha-input" class="w-24 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Your Answer" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="begin-app-submit-btn" class="w-full main-bg-color secondary-text-color font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                    <span class="btn-text">Proceed</span>
+                    <svg class="animate-spin h-5 w-5 ml-3 hidden btn-loader" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="alert-modal" class="modal-overlay">
+        <div class="modal-content text-center p-6">
+            <div id="alert-modal-icon" class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full">
+                </div>
+            <h2 id="alert-modal-title" class="text-2xl font-bold mb-2"></h2>
+            <p id="alert-modal-message" class="text-gray-600 mb-6"></p>
+            <button id="close-alert-modal" class="main-bg-color secondary-text-color font-bold py-2 px-8 rounded-lg hover:opacity-90 transition duration-300">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <div id="forgot-password-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold main-text-color">Reset Password</h2>
+                <button id="close-forgot-password-modal" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            </div>
+            <form id="forgot-password-form">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Are you an applicant?</label>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="user-type" value="applicant" class="form-radio h-4 w-4 main-text-color">
+                            <span class="ml-2 text-gray-700"> &nbsp; I am an Applicant</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="user-type" value="general" class="form-radio h-4 w-4 main-text-color" checked>
+                            <span class="ml-2 text-gray-700">&nbsp; I am not an Applicant</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="general-reset-fields">
+                    <div class="mb-4">
+                        <label for="reset-email-general" class="block text-gray-700 font-medium mb-2">Your Email Address</label>
+                        <input type="email" id="reset-email-general" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                    </div>
+                </div>
+
+                <div id="applicant-reset-fields" class="hidden space-y-4">
+                    <div class="mb-4">
+                        <label for="reset-app-id" class="block text-gray-700 font-medium mb-2">Application ID / JAMB Reg No</label>
+                        <input type="text" id="reset-app-id" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="reset-email-applicant" class="block text-gray-700 font-medium mb-2">Your Email Address</label>
+                        <input type="email" id="reset-email-applicant" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                    <div class="mb-4">
+                        <label for="reset-jamb-score" class="block text-gray-700 font-medium mb-2">JAMB Score (if applicable)</label>
+                        <input type="number" id="reset-jamb-score" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                    </div>
+                </div>
+
+                <button type="submit" id="reset-password-btn" class="w-full mt-4 main-bg-color secondary-text-color font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                    <span class="btn-text">Send Reset Link</span>
+                    <svg class="animate-spin h-5 w-5 ml-3 hidden btn-loader" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="create-account-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold main-text-color">Create New Student Account</h2>
+                <button id="close-create-account-modal" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            </div>
+            
+            <form id="create-account-form">
+                <div id="create-account-error" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert"></div>
+
+                <div class="mb-4">
+                    <label for="create-app-type" class="block text-gray-700 font-medium mb-2">Select Your Admission Type</label>
+                    <select id="create-app-type" class="w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                        <option value="">-- Please select --</option>
+                        <option value="utme">UTME</option>
+                        <option value="de">Direct Entry</option>
+                        <option value="part-time">Part-Time</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="postgraduate">Postgraduate</option>
+                    </select>
+                </div>
+
+                <div class="space-y-4 mt-4 dynamic-create-fields">
+                
+                    <div id="create-fields-utme" class="hidden space-y-4">
+                        <div class="mb-4">
+                            <label for="create-jamb-reg-utme" class="block text-gray-700 font-medium mb-2">JAMB Registration Number</label>
+                            <input type="text" id="create-jamb-reg-utme" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                        </div>
+                    </div>
+
+                    <div id="create-fields-de" class="hidden space-y-4">
+                        <div class="mb-4">
+                            <label for="create-jamb-reg-de" class="block text-gray-700 font-medium mb-2">JAMB Registration Number</label>
+                            <input type="text" id="create-jamb-reg-de" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                        </div>
+                    </div>
+
+                    <div id="create-fields-part-time" class="hidden space-y-4">
+                        <div class="mb-4">
+                            <label for="create-app-id-pt" class="block text-gray-700 font-medium mb-2">Application ID</label>
+                            <input type="text" id="create-app-id-pt" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                        </div>
+                    </div>
+
+                    <div id="create-fields-diploma" class="hidden space-y-4">
+                        <div class="mb-4">
+                            <label for="create-app-id-diploma" class="block text-gray-700 font-medium mb-2">Application ID</label>
+                            <input type="text" id="create-app-id-diploma" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                        </div>
+                    </div>
+
+                    <div id="create-fields-postgraduate" class="hidden space-y-4">
+                        <div class="mb-4">
+                            <label for="create-app-id-pg" class="block text-gray-700 font-medium mb-2">Application ID</label>
+                            <input type="text" id="create-app-id-pg" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+                    <label for="create-email" class="block text-gray-700 font-medium mb-2">Personal Email Address</label>
+                    <input type="email" id="create-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" required>
+                </div>
+
+                <button type="submit" id="create-account-btn" class="w-full mt-6 main-bg-color secondary-text-color font-bold py-3 px-4 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                    <span class="btn-text">Create my account</span>
+                    <svg class="animate-spin h-5 w-5 ml-3 hidden btn-loader" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="main-bg-color mt-auto">
+        <div class="container mx-auto px-6 py-4 text-center secondary-text-color text-sm">
+            <p>SPESSE Academic Record Management Portal V0.0.1</p>
+            <p>&copy; <span id="copyright-year">2026</span> University of Benin. All Rights Reserved.</p>
+            <p>Ultison&reg; Software</p>
+        </div>
+    </footer>
+
+     <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+    <script>
+document.getElementById("uapp").classList.add("hidden"),document.addEventListener("DOMContentLoaded",function(){let e=GsonApis.session("ultison");if(e){switch(e=JSON.parse(e),GsonApis.request.sendAuthorization=e.auth,e.data.usertype){case"applicant":if(!e.data.userinfo.type){GsonApis.session(null),GsonApis.debug&&console.warn("Application type not found");break}GsonApis.request.get(`applicant/${e.data.userinfo.type}.html`,e=>{document.open(),document.write(e),document.close()},e=>{GsonApis.debug&&console.warn(e)});break;case"admin":GsonApis.request.get("admin/admin.html",e=>{document.open(),document.write(e),document.close()},e=>{GsonApis.debug&&console.warn(e)});break;case"staff":GsonApis.request.get("staff/staff.html",e=>{document.open(),document.write(e),document.close()},e=>{GsonApis.debug&&console.warn(e)});break;case"student":GsonApis.request.get("student/sis.html",e=>{document.open(),document.write(e),document.close()},e=>{GsonApis.debug&&console.warn(e)})}return}document.getElementById("uapp").classList.remove("hidden"),EPT="app/";let t=document.querySelectorAll(".nav-link"),s=document.querySelectorAll(".page-section");t.forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();let t=this.getAttribute("href");history.pushState(null,null,t),J(t),document.getElementById("mobile-menu").classList.add("hidden")})}),window.onpopstate=()=>J(window.location.hash),J(window.location.hash||"#home");let a=document.getElementById("mobile-menu-button"),n=document.getElementById("mobile-menu");a.addEventListener("click",()=>n.classList.toggle("hidden"));let l=document.getElementById("alert-modal"),i=document.getElementById("alert-modal-icon"),r=document.getElementById("alert-modal-title"),d=document.getElementById("alert-modal-message"),o=document.getElementById("close-alert-modal"),c={success:'<svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>',error:'<svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>'},u={success:"bg-green-100",error:"bg-red-100"},m={success:"text-green-700",error:"text-red-700"};function g(e,t,s){i.innerHTML=c[e],i.classList.remove("bg-green-100","bg-red-100"),i.classList.add(u[e]),r.textContent=t,r.classList.remove("text-green-700","text-red-700"),r.classList.add(m[e]),d.textContent=s,l.classList.add("visible")}function y(){l.classList.remove("visible")}o.addEventListener("click",y),l.addEventListener("click",e=>{e.target===l&&y()});let h=document.getElementById("captcha-display"),b=document.getElementById("refresh-captcha"),v="";function E(){let e="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";v=Array.from({length:6},()=>e.charAt(Math.floor(Math.random()*e.length))).join(""),h.textContent=v}b.addEventListener("click",E),E(),document.getElementById("student-login-form").addEventListener("submit",function(t){t.preventDefault();let s=document.getElementById("captcha-input").value;if(s.toLowerCase()!==v.toLowerCase())g("error","CAPTCHA Failed","The characters you entered did not match. Please try again."),E(),document.getElementById("captcha-input").value="";else{let a=document.getElementById("student-login-btn");a.disabled=!0,a.querySelector(".btn-text").classList.add("hidden"),a.querySelector(".btn-loader").classList.remove("hidden"),e=document.getElementById("student-id").value,p=document.getElementById("student-password").value,GsonApis.request.postJson(EPT+"?authenticate",{userid:e,password:p,action:"login"},e=>{a.disabled=!1,a.querySelector(".btn-text").classList.remove("hidden"),a.querySelector(".btn-loader").classList.add("hidden"),g(e.status?"success":"error",e.status?"AUTHENTICATED":"FAILED",e.message?e.message:""),e.status&&GsonApis.session("ultison",JSON.stringify(e)),e.status&&setTimeout(()=>{location.reload()},1100),e.status||E()},e=>{a.disabled=!1,a.querySelector(".btn-text").classList.remove("hidden"),a.querySelector(".btn-loader").classList.add("hidden"),g("error","Login Error","An unexpected error occurred. Please try again."),E()})}});let f=document.getElementById("enquiry-form");f.addEventListener("submit",function(e){e.preventDefault();let t=document.getElementById("enquiry-submit-btn"),s=document.getElementById("enquiry-success-message");s.classList.add("hidden"),t.disabled=!0,t.querySelector(".btn-text").classList.add("hidden"),t.querySelector(".btn-loader").classList.remove("hidden"),setTimeout(()=>{t.disabled=!1,t.querySelector(".btn-text").classList.remove("hidden"),t.querySelector(".btn-loader").classList.add("hidden"),g("error","DISABLED","The function is disabled at the moment.")},400)});let L=document.getElementById("applicant-modal"),I=document.getElementById("application-type");I.innerHTML='<option value="">-- Select Type --</option>'+["Direct Entry","Diploma","JUPEB","Part Time","Post-doctorate","Postgraduate","UTME"].map(e=>`<option value="${e.toLowerCase().replace(" ","-")}">${e}</option>`).join(""),document.getElementById("open-applicant-modal").addEventListener("click",()=>L.classList.add("visible")),document.getElementById("close-applicant-modal").addEventListener("click",()=>L.classList.remove("visible")),L.addEventListener("click",e=>{e.target===L&&L.classList.remove("visible")}),document.getElementById("applicant-login-form").addEventListener("submit",function(e){e.preventDefault();let t=document.getElementById("applicant-continue-btn"),s=document.getElementById("applicant-form-error");if(s.classList.add("hidden"),!this.checkValidity()){s.textContent="All fields are required.",s.classList.remove("hidden");return}t.disabled=!0,t.querySelector(".btn-text").classList.add("hidden"),t.querySelector(".btn-loader").classList.remove("hidden"),setTimeout(()=>{t.disabled=!1,t.querySelector(".btn-text").classList.remove("hidden"),t.querySelector(".btn-loader").classList.add("hidden"),g("error","DISABLED","The function is disabled at the moment.")},50)});let B=document.getElementById("application-content"),q=[],w={},x="",$="",k=document.getElementById("begin-application-modal"),S=document.getElementById("math-captcha-question"),_=0;function A(){let e=Math.floor(10*Math.random())+1,t=Math.floor(10*Math.random())+1;_=e+t,S.textContent=`What is ${e} + ${t}?`}document.getElementById("state-of-origin"),document.getElementById("close-begin-application-modal").addEventListener("click",()=>k.classList.remove("visible")),k.addEventListener("click",e=>{e.target===k&&k.classList.remove("visible")}),document.getElementById("begin-application-form").addEventListener("submit",function(e){e.preventDefault();let t=document.getElementById("begin-app-form-error");t.classList.add("hidden");let s=parseInt(document.getElementById("math-captcha-input").value,10);if(s!==_){t.textContent="Incorrect answer to the security question.",t.classList.remove("hidden"),A();return}if(!this.checkValidity()){t.textContent="Please fill out all required fields.",t.classList.remove("hidden");return}let a=document.getElementById("begin-app-submit-btn");a.disabled=!0,a.querySelector(".btn-text").classList.add("hidden"),a.querySelector(".btn-loader").classList.remove("hidden"),GsonApis.request.postJson(EPT+"?create_application",function e(){let t={batchid:$,type:x.toLowerCase().replace(" ","_")},s=x.toLowerCase().replace(" ","_");switch(s){case"utme":t.jambregno=document.getElementById("jamb-reg").value,t.jambscore=document.getElementById("jamb-score").value,t.password=document.getElementById("jamb-pass").value;break;case"direct_entry":t.jambregno=document.getElementById("jamb-reg-de").value,t.password=document.getElementById("de-pass").value;break;default:t.email=document.getElementById("begin-app-email").value,t.phone=document.getElementById("begin-app-phone").value,t.password=document.getElementById("generic-pass").value}return t}(),e=>{a.disabled=!1,a.querySelector(".btn-text").classList.remove("hidden"),a.querySelector(".btn-loader").classList.add("hidden"),k.classList.remove("visible"),g(e.status?"success":"error",e.status?"Application Started":"Error!",e.message)},e=>{a.disabled=!1,g("error","Error Initializing your record!")})});let C=document.getElementById("forgot-password-modal"),D=document.getElementById("forgot-password-link"),T=document.getElementById("close-forgot-password-modal"),j=document.getElementById("forgot-password-form"),P=document.querySelectorAll('input[name="user-type"]'),M=document.getElementById("general-reset-fields"),H=document.getElementById("applicant-reset-fields");function J(e){let t=e.split("?")[0];t=t&&document.querySelector(t)?t.substring(1):"home",s.forEach(e=>{e.classList.toggle("active",e.id===t)}),"application"===t&&setTimeout(()=>{(function e(){B.innerHTML='<div class="text-center p-8"><div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-700 mx-auto"></div><p class="mt-4">Loading Applications...</p></div>',GsonApis.request.postJson(EPT+"?available_applications",{},t=>{if(!t.status){let s='<h1 class="text-3xl font-bold main-text-color mb-6">Available Applications</h1><div class="space-y-4">';s+=`
+                                <h3 class="font-bold text-lg mb-2">${t.message}</h3>
+                            `,s+="</div>",B.innerHTML=s;return}q=[],w={},t.data.length&&t.data.forEach(e=>{q.push({id:e.batchid,title:e.title,instructions:JSON.parse(e.instructions)||[],openingDate:e.application_open_time,deadline:e.application_close_time,type:e.category,session:e.academic_session}),w[e.batchid]={instructions:[e.body]}});let a='<h1 class="text-3xl font-bold main-text-color mb-6">Available Applications</h1><div class="space-y-4">';q&&q.length?q.forEach(e=>{GsonApis.debug&&console.log(e),a+=`
+                                    <div class="p-4 border rounded-lg hover:shadow-lg hover:border-purple-400 cursor-pointer transition application-item" data-id="${e.id}">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h2 class="font-bold text-xl main-text-color">${e.title}</h2>
+                                                <p class="text-gray-600">${e.session}</p>
+                                            </div>
+                                            <span class="text-xs font-semibold uppercase main-bg-color secondary-text-color px-2 py-1 rounded">${e.type.replace("-"," ").replace("_"," ")}</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-lg mb-2">Instructions:</h3>
+                                            <ul class="list-none list-inside space-y-2 mb-8 bg-gray-50 p-4 rounded-lg">
+                                                ${e.instructions&&e.instructions.map(e=>`<li>${e}</li>`).join("")}
+                                            </ul>
+                                        </div>
+                                        <div class="text-sm mt-2 flex justify-between">
+                                            <p class="text-green-600 font-medium">Opens: ${e.openingDate}</p>
+                                            <p class="text-red-600 font-medium">Deadline: ${e.deadline}</p>
+                                        </div>
+                                    </div>
+                                `}):a+=`
+                                <h3 class="font-bold text-lg mb-2">No applications are available at this time.</h3>
+                                <h3 class="font-bold text-lg mb-2">Please check back later.</h3>
+                            `,a+="</div>",B.innerHTML=a,document.querySelectorAll(".application-item").forEach(t=>{t.addEventListener("click",()=>(function t(s){B.innerHTML='<div class="text-center p-8"><div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-700 mx-auto"></div><p class="mt-4">Loading Instructions...</p></div>';let a=q.find(e=>e.id===s),n=w[s];if(a&&n){x=a.type,$=a.id;let l=`
+                            <button id="back-to-apps" class="mb-6 main-text-color font-semibold hover:underline">&larr; Back to all applications</button>
+                            <h1 class="text-3xl font-bold main-text-color mb-2">How to Apply for:</h1>
+                            <h2 class="text-2xl font-semibold text-gray-700 mb-6">${a.title}</h2>
+                            <h3 class="font-bold text-lg mb-2">Detailed Instructions:</h3>
+                            <ul class="list-disc list-inside space-y-2 mb-8 bg-gray-50 p-4 rounded-lg">
+                                ${n.instructions.map(e=>`<li>${e}</li>`).join("")}
+                            </ul>
+                            <button class="w-full md:w-auto main-bg-color secondary-text-color font-bold py-3 px-8 rounded-lg hover:opacity-90 transition duration-300 begin-application-btn" data-app-type="${a.type}">
+                                Begin Application Process
+                            </button>
+                        `;B.innerHTML=l,document.getElementById("back-to-apps").addEventListener("click",e),document.querySelector(".begin-application-btn").addEventListener("click",function(){(function e(t){document.getElementById("begin-application-form").reset(),document.getElementById("begin-app-form-error").classList.add("hidden");let s=document.getElementById("utme-fields"),a=document.getElementById("de-fields"),n=document.getElementById("generic-app-fields");s.classList.add("hidden"),a.classList.add("hidden"),n.classList.add("hidden"),s.querySelectorAll("input").forEach(e=>e.required=!1),a.querySelectorAll("input").forEach(e=>e.required=!1),n.querySelectorAll("input").forEach(e=>e.required=!1);let l=t.toLowerCase().replace(" ","_");switch(l){case"utme":s.classList.remove("hidden"),s.querySelectorAll("input").forEach(e=>e.required=!0);break;case"direct_entry":a.classList.remove("hidden"),a.querySelectorAll("input").forEach(e=>e.required=!0);break;default:n.classList.remove("hidden"),n.querySelectorAll("input").forEach(e=>e.required=!0)}A(),k.classList.add("visible")})(this.dataset.appType)})}else B.innerHTML='<p class="text-red-500">Could not load instructions. Please try again.</p>'})(t.dataset.id))})})})()},10)}D.addEventListener("click",e=>{e.preventDefault(),C.classList.add("visible")}),T.addEventListener("click",()=>{C.classList.remove("visible"),j.reset(),document.querySelector('input[name="user-type"]:checked').dispatchEvent(new Event("change"))}),C.addEventListener("click",e=>{e.target===C&&(C.classList.remove("visible"),j.reset(),document.querySelector('input[name="user-type"]:checked').dispatchEvent(new Event("change")))}),P.forEach(e=>{e.addEventListener("change",function(){"applicant"===this.value?(M.classList.add("hidden"),H.classList.remove("hidden"),document.getElementById("reset-email-general").required=!1,document.getElementById("reset-app-id").required=!0,document.getElementById("reset-email-applicant").required=!0):(M.classList.remove("hidden"),H.classList.add("hidden"),document.getElementById("reset-email-general").required=!0,document.getElementById("reset-app-id").required=!1,document.getElementById("reset-email-applicant").required=!1)})}),document.querySelector('input[name="user-type"]:checked').dispatchEvent(new Event("change")),j.addEventListener("submit",function(e){e.preventDefault();let t=document.querySelector('input[name="user-type"]:checked').value,s=document.getElementById("reset-password-btn");s.disabled=!0,s.querySelector(".btn-text").classList.add("hidden"),s.querySelector(".btn-loader").classList.remove("hidden");let a="",n={};"applicant"===t?(a=EPT+"?resetpassword",n={sub_action:"request_applicant",applicationId:document.getElementById("reset-app-id").value,email:document.getElementById("reset-email-applicant").value,jambScore:document.getElementById("reset-jamb-score").value||null}):(a=EPT+"?resetpassword",n={sub_action:"request_general",email:document.getElementById("reset-email-general").value}),GsonApis.request.postJson(a,n,e=>{s.disabled=!1,s.querySelector(".btn-text").classList.remove("hidden"),s.querySelector(".btn-loader").classList.add("hidden"),C.classList.remove("visible"),g("success","Request Sent","If an account matching your details exists, a password reset link has been sent to your email address.")},e=>{s.disabled=!1,s.querySelector(".btn-text").classList.remove("hidden"),s.querySelector(".btn-loader").classList.add("hidden"),g("error","Request Failed","Could not process your request at this time. Please try again later.")})}),document.getElementById("set-new-password-form").addEventListener("submit",function(e){e.preventDefault();let t=document.getElementById("new-password").value,s=document.getElementById("confirm-password").value;if(t!==s){g("error","Passwords Mismatch","The passwords you entered do not match. Please try again.");return}let a=new URLSearchParams(window.location.hash.split("?")[1]),n=a.get("token");if(!n){g("error","Invalid Link","The password reset link is invalid or missing a token.");return}let l=EPT+"?perform_password_reset";GsonApis.request.postJson(l,{token:n,newPassword:t},e=>{e.status?(g("success","Password Updated","Your password has been successfully updated. You can now log in."),history.pushState(null,null,"#login"),J("#login")):g("error","Update Failed",e.message||"The link may be expired or invalid. Please try again.")},e=>{g("error","An Error Occurred","Could not update your password. Please try again later.")})});let U=document.getElementById("create-account-modal"),F=document.getElementById("open-create-account-modal"),N=document.getElementById("close-create-account-modal"),R=document.getElementById("create-app-type"),O=document.querySelectorAll(".dynamic-create-fields > div"),V=document.getElementById("create-account-form"),Y=document.getElementById("create-account-error");function z(){U.classList.remove("visible")}F.addEventListener("click",e=>{e.preventDefault(),V.reset(),O.forEach(e=>e.classList.add("hidden")),Y.classList.add("hidden"),U.classList.add("visible")}),N.addEventListener("click",z),U.addEventListener("click",e=>{e.target===U&&z()}),R.addEventListener("change",function(){let e=this.value;if(O.forEach(e=>{e.classList.add("hidden"),e.querySelectorAll("input").forEach(e=>e.required=!1)}),e){let t=document.getElementById(`create-fields-${e}`);t&&(t.classList.remove("hidden"),t.querySelectorAll("input").forEach(e=>e.required=!0))}}),V.addEventListener("submit",function(e){if(e.preventDefault(),Y.classList.add("hidden"),!this.checkValidity()){Y.textContent="Please fill out all required fields.",Y.classList.remove("hidden");return}let t=document.getElementById("create-account-btn"),s=R.value,a=document.getElementById("create-email").value,n={action:"create_new_student",admissionType:s,email:a};switch(s){case"utme":n.jambRegNo=document.getElementById("create-jamb-reg-utme").value;break;case"de":n.jambRegNo=document.getElementById("create-jamb-reg-de").value;break;case"part-time":n.applicationId=document.getElementById("create-app-id-pt").value;break;case"diploma":n.applicationId=document.getElementById("create-app-id-diploma").value;break;case"postgraduate":n.applicationId=document.getElementById("create-app-id-pg").value}t.disabled=!0,t.querySelector(".btn-text").classList.add("hidden"),t.querySelector(".btn-loader").classList.remove("hidden"),GsonApis.request.postJson(EPT+"?createMyAccount",n,e=>{t.disabled=!1,t.querySelector(".btn-text").classList.remove("hidden"),t.querySelector(".btn-loader").classList.add("hidden"),e.status?(z(),g("success","Account Created!",e.message)):(Y.textContent=e.message,Y.classList.remove("hidden"))},e=>{t.disabled=!1,t.querySelector(".btn-text").classList.remove("hidden"),t.querySelector(".btn-loader").classList.add("hidden"),Y.textContent="A network error occurred. Please try again.",Y.classList.remove("hidden")})})});
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c633e00aaf2bdb2',t:'MTc2OTc5OTk0MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
